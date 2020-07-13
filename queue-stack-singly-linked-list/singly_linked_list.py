@@ -71,14 +71,14 @@ class LinkedList:
             return None
 
         curr = self.head
-        max = curr.value
+        max_value = curr.value
 
         while curr:
-            if curr.value > max:
-                max = curr.value
+            if curr.value > max_value:
+                max_value = curr.value
             curr = curr.next_node
 
-        return max
+        return max_value
 
 
 ll = LinkedList()
