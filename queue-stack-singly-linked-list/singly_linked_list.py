@@ -33,9 +33,10 @@ class LinkedList:
         while curr.next_node is not self.tail:
             curr = curr.next_node
 
+        old_tail = curr.next_node
         self.tail = curr
         self.tail.next_node = None
-        return curr.value
+        return old_tail.value
 
     def remove_head(self):
         # empty LL
