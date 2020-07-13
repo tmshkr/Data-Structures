@@ -19,6 +19,9 @@ class Node:
         self.value = value
         self.next_node = next_node
 
+    def __repr__(self):
+        return f"<Node value: {self.value}>"
+
 
 """
 Linked List class
@@ -30,10 +33,10 @@ Data:
 Methods:
 1. append (add a new node at the tail)
 2. prepend (add a new node at the head)
-3. remove head
-4. remove tail
-5. contains?
-6. get maximum
+3. remove_head
+4. remove_tail
+5. contains
+6. get_maximum
 """
 
 
@@ -43,13 +46,26 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-    def add_to_tail(self, value):
+    def push(self, value):
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
             self.tail = new_node
         else:
             self.tail.next_node = new_node
+            self.tail = new_node
+
+    def pop(self):
+        if self.head is None:
+            return
+
+        curr = self.head
+        while curr.next_node is not None:
+            self.tail = curr
+            curr = curr.next_node
+
+        self.tail.next_node = None
+        return curr.value
 
     def remove_head(self):
         # empty LL

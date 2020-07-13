@@ -14,7 +14,7 @@ return elements in Last In First Out order.
 
 # Using array
 
-
+"""
 class Stack:
     def __init__(self):
         self.size = 0
@@ -31,3 +31,28 @@ class Stack:
         if (len(self.storage) > 0):
             popped = self.storage.pop()
             return popped
+"""
+
+# Using LinkedList
+
+
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.storage = LinkedList()
+
+    def __len__(self):
+        return self.size
+
+    def push(self, value):
+        self.storage.push(value)
+        self.size += 1
+        return self
+
+    def pop(self):
+        if(len(self) > 0):
+            popped = self.storage.pop()
+            self.size -= 1
+            return popped
+        else:
+            return None
