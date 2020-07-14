@@ -14,6 +14,14 @@ class LinkedList:
         self.head = None
         self.tail = None
 
+    def __repr__(self):
+        curr = self.head
+        string = ""
+        while curr:
+            string += str(curr) + "\n"
+            curr = curr.next_node
+        return string
+
     def add_to_tail(self, value):
         new_node = Node(value)
         if self.head is None:
@@ -80,6 +88,23 @@ class LinkedList:
             curr = curr.next_node
 
         return max_value
+
+    def reverse(self):
+        if self.head == None:
+            return self
+
+        left = self.head
+        right = self.head.next_node
+        self.head.next_node = None
+
+        while right is not None:
+            next_node = right.next_node
+            right.next_node = left
+            left = right
+            right = next_node
+
+        self.head, self.tail = self.tail, self.head
+        return self
 
 
 ll = LinkedList()
