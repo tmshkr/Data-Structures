@@ -5,7 +5,7 @@ class Node:
 
     def __repr__(self):
         next_node = "None" if self.next_node is None else f"{self.next_node.value} at {hex(id(self.next_node))}"
-        return f"<Node value: {self.value} at {hex(id(self))} next_node: {next_node}>"
+        return f"<Node\n  value: {self.value} at {hex(id(self))}\n  next_node: {next_node}\n>"
 
 
 class LinkedList:
