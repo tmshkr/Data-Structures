@@ -17,7 +17,7 @@ class ListNode:
 
 
 """
-Our doubly-linked list class. It holds references to 
+Our doubly-linked list class. It holds references to
 the list's head and tail nodes.
 """
 
@@ -32,8 +32,8 @@ class DoublyLinkedList:
         return self.length
 
     """
-    Wraps the given value in a ListNode and inserts it 
-    as the new head of the list. Don't forget to handle 
+    Wraps the given value in a ListNode and inserts it
+    as the new head of the list. Don't forget to handle
     the old head node's previous pointer accordingly.
     """
 
@@ -47,7 +47,7 @@ class DoublyLinkedList:
             self.head = node
 
         self.length += 1
-        return self
+        return node
 
     """
     Removes the List's current head node, making the
@@ -70,8 +70,8 @@ class DoublyLinkedList:
         return old_head.value
 
     """
-    Wraps the given value in a ListNode and inserts it 
-    as the new tail of the list. Don't forget to handle 
+    Wraps the given value in a ListNode and inserts it
+    as the new tail of the list. Don't forget to handle
     the old tail node's next pointer accordingly.
     """
 
@@ -85,10 +85,10 @@ class DoublyLinkedList:
             self.tail = node
 
         self.length += 1
-        return self
+        return node
 
     """
-    Removes the List's current tail node, making the 
+    Removes the List's current tail node, making the
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node.
     """
@@ -106,12 +106,28 @@ class DoublyLinkedList:
         return old_tail.value
 
     """
-    Removes the input node from its current spot in the 
+    Removes the input node from its current spot in the
     List and inserts it as the new head node of the List.
     """
 
     def move_to_front(self, node):
-        pass
+        if node is self.head:
+            return node
+
+        # remove node from its current position
+        if node.prev:
+            node.prev.next = node.next
+        if node.next:
+            node.next.prev = node.prev
+        if node is self.tail:
+            self.tail = node.prev
+
+        # then add to head
+        node.next = self.head
+        node.prev = None
+        self.head.prev = node
+        self.head = node
+        return node
 
     """
     Removes the input node from its current spot in the 
@@ -139,7 +155,7 @@ class DoublyLinkedList:
 
 
 dll = DoublyLinkedList(ListNode(1))
-# dll.add_to_tail(2)
-# dll.add_to_tail(3)
-# dll.add_to_tail(4)
-# dll.add_to_tail(5)
+dll.add_to_tail(2)
+third = dll.add_to_tail(3)
+dll.add_to_tail(4)
+dll.add_to_tail(5)
