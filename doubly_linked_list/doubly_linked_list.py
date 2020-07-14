@@ -16,7 +16,7 @@ class ListNode:
         return f"<ListNode\n  value: {self.value} at {hex(id(self))}\n  next: {next_node}\n  prev: {prev_node}\n>"
 
 
-"""s
+"""
 Our doubly-linked list class. It holds references to 
 the list's head and tail nodes.
 """
@@ -56,7 +56,17 @@ class DoublyLinkedList:
     """
 
     def add_to_tail(self, value):
-        pass
+        node = ListNode(value)
+        if len(self) == 0:
+            self.head = self.tail = node
+            self.length += 1
+        else:
+            node.prev = self.tail
+            self.tail.next = node
+            self.tail = node
+
+        self.length += 1
+        return self
 
     """
     Removes the List's current tail node, making the 
@@ -98,3 +108,10 @@ class DoublyLinkedList:
 
     def get_max(self):
         pass
+
+
+dll = DoublyLinkedList(ListNode(1))
+dll.add_to_tail(2)
+dll.add_to_tail(3)
+dll.add_to_tail(4)
+dll.add_to_tail(5)
