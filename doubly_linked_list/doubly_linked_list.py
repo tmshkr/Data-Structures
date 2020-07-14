@@ -197,6 +197,16 @@ class DoublyLinkedList:
 
         return max_value
 
+    def reverse(self):
+        curr = self.head
+        while curr is not None:
+            next_node = curr.next
+            curr.next, curr.prev = curr.prev, curr.next
+            curr = next_node
+
+        self.tail, self.head = self.head, self.tail
+        return self
+
 
 dll = DoublyLinkedList(ListNode(1))
 dll.add_to_tail(2)
