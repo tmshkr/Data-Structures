@@ -60,11 +60,11 @@ class DoublyLinkedList:
             return None
 
         old_head = self.head
-        new_head = self.head.next
-        new_head.prev = None
-        self.head = new_head
+        self.head = self.head.next
         if old_head is self.tail:
-            self.tail = new_head
+            self.tail = None
+        else:
+            self.head.prev = None
         self.length -= 1
 
         return old_head.value
