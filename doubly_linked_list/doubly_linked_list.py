@@ -56,7 +56,18 @@ class DoublyLinkedList:
     """
 
     def remove_from_head(self):
-        pass
+        if len(self) == 0:
+            return None
+
+        old_head = self.head
+        new_head = self.head.next
+        new_head.prev = None
+        self.head = new_head
+        if old_head is self.tail:
+            self.tail = new_head
+        self.length -= 1
+
+        return old_head.value
 
     """
     Wraps the given value in a ListNode and inserts it 
@@ -119,7 +130,7 @@ class DoublyLinkedList:
 
 
 dll = DoublyLinkedList(ListNode(1))
-dll.add_to_tail(2)
-dll.add_to_tail(3)
-dll.add_to_tail(4)
-dll.add_to_tail(5)
+# dll.add_to_tail(2)
+# dll.add_to_tail(3)
+# dll.add_to_tail(4)
+# dll.add_to_tail(5)
