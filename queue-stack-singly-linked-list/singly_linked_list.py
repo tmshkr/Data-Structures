@@ -4,7 +4,7 @@ class Node:
         self.next_node = next_node
 
     def __repr__(self):
-        return f"<Node value: {self.value}>"
+        return f"<Node value: {self.value} at {hex(id(self))}>"
 
 
 class LinkedList:
