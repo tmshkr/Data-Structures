@@ -94,7 +94,16 @@ class DoublyLinkedList:
     """
 
     def remove_from_tail(self):
-        pass
+        if len(self) == 0:
+            return None
+
+        old_tail = self.tail
+        self.tail = old_tail.prev
+        if old_tail is self.head:
+            self.head = None
+        self.length -= 1
+
+        return old_tail.value
 
     """
     Removes the input node from its current spot in the 
