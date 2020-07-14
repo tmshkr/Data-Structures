@@ -90,12 +90,8 @@ class LinkedList:
         return max_value
 
     def reverse(self):
-        if self.head == None:
-            return self
-
-        left = self.head
-        right = self.head.next_node
-        self.head.next_node = None
+        left = None
+        right = self.head
 
         while right is not None:
             next_node = right.next_node
