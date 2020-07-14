@@ -31,6 +31,14 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
+    def __repr__(self):
+        curr = self.head
+        string = ""
+        while curr:
+            string += str(curr) + "\n"
+            curr = curr.next
+        return string
+
     """
     Wraps the given value in a ListNode and inserts it
     as the new head of the list. Don't forget to handle
@@ -115,12 +123,11 @@ class DoublyLinkedList:
             return node
 
         # remove node from its current position
-        if node.prev:
-            node.prev.next = node.next
-        if node.next:
-            node.next.prev = node.prev
+        node.prev.next = node.next
         if node is self.tail:
             self.tail = node.prev
+        else:
+            node.next.prev = node.prev
 
         # then add to head
         node.next = self.head
