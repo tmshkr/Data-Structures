@@ -9,15 +9,41 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
+    # https://codereview.stackexchange.com/a/109410
+    def __repr__(self):
+        if self.right is not None:
+            fmt = '{}({value!r}, {left!r}, {right!r})'
+        elif self.left is not None:
+            fmt = '{}({value!r}, {left!r})'
+        else:
+            fmt = '{}({value!r})'
+        return fmt.format(type(self).__name__, **vars(self))
     # Insert the given value into the tree
+
     def insert(self, value):
-        pass
+        # check if there is a root node
+        if self is None:
+            self = BSTNode(value)
+            return
+
+        if value < self.value:
+            if self.left:
+                self.left.insert(value)
+            else:
+                self.left = BSTNode(value)
+        else:
+            if self.right:
+                self.right.insert(value)
+            else:
+                self.right = BSTNode(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -59,3 +85,10 @@ class BSTNode:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+bst = BSTNode(5)
+bst.insert(2)
+bst.insert(3)
+bst.insert(7)
+bst.insert(6)
