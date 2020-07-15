@@ -26,22 +26,31 @@ class BSTNode:
         else:
             fmt = '{}({value!r})'
         return fmt.format(type(self).__name__, **vars(self))
-    # Insert the given value into the tree
 
+    # Insert the given value into the tree
     def insert(self, value):
-        # check if there is a root node
+        # check if there is a node
+        # if not, create the node
         if self is None:
             self = BSTNode(value)
             return
 
+        # if there isn't a node,
+        # check if the value to insert is less than the current node
         if value < self.value:
+            # if it is less than the current node's value,
+            # call insert again if there is already a node present
             if self.left:
                 self.left.insert(value)
+            # otherwise, create the node here
             else:
                 self.left = BSTNode(value)
         else:
+            # if the value is gte the current node's value,
+            # call insert again if there is already a node present
             if self.right:
                 self.right.insert(value)
+            # otherwise, create the node here
             else:
                 self.right = BSTNode(value)
 
