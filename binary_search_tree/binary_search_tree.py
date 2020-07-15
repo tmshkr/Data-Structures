@@ -33,35 +33,51 @@ class BSTNode:
         # if not, create the node and return
         if self is None:
             self = BSTNode(value)
-            return
+            return self
 
         # if there is a node,
-        # check if the value to insert is less than the current node
+        # check if the value to insert is less than the current node's value
         if value < self.value:
             # if it is less than the current node's value,
-            # call insert again if there is already a node present
-            if self.left:
-                self.left.insert(value)
-            # otherwise, create the node here
-            else:
+            # check that there isn't a left child
+            if self.left is None:
+                # create the node here if there isn't a left child
                 self.left = BSTNode(value)
+            else:
+                # call insert again if there is already a left child
+                self.left.insert(value)
         else:
             # if the value is gte the current node's value,
-            # call insert again if there is already a node present
-            if self.right:
-                self.right.insert(value)
-            # otherwise, create the node here
-            else:
+            # check that there isn't a right child
+            if self.right is None:
+                # create the node here if there isn't a right child
                 self.right = BSTNode(value)
+            else:
+                # call insert again if there is already a right child
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+
+        if target < self.value:
+            if self.left is None:
+                return False
+            else:
+                return self.left.contains(target)
+        else:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right is None:
+            return self.value
+        return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
@@ -96,15 +112,8 @@ class BSTNode:
         pass
 
 
-# bst = BSTNode(5)
-# bst.insert(2)
-# bst.insert(3)
-# bst.insert(7)
-# bst.insert(6)
-
-bst = BSTNode(74)
-bst.insert(64)
-bst.insert(93)
-bst.insert(69)
-bst.insert(68)
-bst.insert(90)
+bst = BSTNode(5)
+bst.insert(2)
+bst.insert(3)
+bst.insert(7)
+bst.insert(6)
