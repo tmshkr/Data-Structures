@@ -30,12 +30,12 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         # check if there is a node
-        # if not, create the node
+        # if not, create the node and return
         if self is None:
             self = BSTNode(value)
             return
 
-        # if there isn't a node,
+        # if there is a node,
         # check if the value to insert is less than the current node
         if value < self.value:
             # if it is less than the current node's value,
@@ -96,8 +96,15 @@ class BSTNode:
         pass
 
 
-bst = BSTNode(5)
-bst.insert(2)
-bst.insert(3)
-bst.insert(7)
-bst.insert(6)
+# bst = BSTNode(5)
+# bst.insert(2)
+# bst.insert(3)
+# bst.insert(7)
+# bst.insert(6)
+
+bst = BSTNode(74)
+bst.insert(64)
+bst.insert(93)
+bst.insert(69)
+bst.insert(68)
+bst.insert(90)
