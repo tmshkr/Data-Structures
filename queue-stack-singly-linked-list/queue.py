@@ -68,32 +68,24 @@ class Queue:
 
 class Queue:
     def __init__(self):
-        self.incoming = Stack()
-        self.outgoing = Stack()
-        self.size = 0
+        self.incoming = []
+        self.outgoing = []
 
     def __len__(self):
-        return self.size
+        return len(self.incoming) + len(self.outgoing)
 
-    def enqueue(self, value):
-        self.incoming.push(value)
-        self.size += 1
-        return self
+    def enqueue(self, item):
+        self.incoming.append(item)
 
     def dequeue(self):
-        if len(self) == 0:
-            return None
-
-        self.size -= 1
-        popped = self.outgoing.pop()
-        if popped is not None:
-            return popped
-        else:
-            popped = self.incoming.pop()
-            while popped is not None:
-                self.outgoing.push(popped)
-                popped = self.incoming.pop()
+        if self.outgoing:
             return self.outgoing.pop()
+
+        while self.incoming:
+            item = self.incoming.pop()
+            self.outgoing.append(item)
+
+        return self.outgoing.pop()
 
 
 q = Queue()
